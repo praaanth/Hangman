@@ -1,17 +1,28 @@
 import { Button, makeStyles, Typography } from '@material-ui/core';
 
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import GameOver from './GameOver';
 import Won from './Won';
+import Lives from './Lives';
+  
+// import the hangman.css file
+import '../Styles/hangman.css';
 
 
 
 
 
 const useStyles= makeStyles({
-    root: {
-        textTransform: 'none',
-    }
+    game: {
+          display: 'flex',
+          flexDirection: 'column',
+    },
+    hangman: {
+        position: 'relative',
+          flex: 1,
+      
+},
+   
 })
 function Game() {
     const classes = useStyles();
@@ -30,14 +41,13 @@ function Game() {
   return (
 
 
+<>
+  
 
-
-
-    <div>
 
         <h1>Welcome to the game</h1>
         <h2>Guess the word</h2>
-          <h1>LIVES : {lives}</h1>
+          <Lives lives={lives} />
        
 
        <p> {maskedWord }</p>
@@ -72,20 +82,13 @@ function Game() {
        }
 
        {
-                hiddenWord.length === correctGuess.length? <Won />: lives === 0 ? <GameOver /> : null
+                hiddenWord.length-1 === correctGuess.length? <Won />: lives === 0 ? <GameOver /> : null
            
 
        }
 
-
-            
-
-          
- 
-
-
-
-    </div>
+    
+    </>
   )
 }
 
